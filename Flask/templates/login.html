@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>Login page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../static/main.css">
+     <style>
+      body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+          .w3-sidebar {width: 120px;background: #222;}
+          footer {
+           display: table;
+    text-align: center; 
+}	
+          i {
+          	padding-right: 10px;
+          }
+        </style>
+  </head>
+  <body class="w3-black">
+     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>REGISTER</p>
+  </a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>LOGIN</p>
+  </a>
+  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+      <form class="w3-black" style="border: 11px groove rgba(28,110,164,0.52);
+border-radius: 40px;" action="" method="post">
+        <h1>Login</h1>
+        <br>
+        <fieldset>
+          <label for="fname">First Name:</label>
+          <input type="text" id="fname" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+          <label for="pw">Password:</label>
+          <input type="password" id="pw" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+          {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+        </fieldset>
+        <button type="submit" value="Login">Login</button>
+      </form>
+      <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>   
+    <i class="fa fa-snapchat w3-hover-opacity"></i>   
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>   
+    <i class="fa fa-twitter w3-hover-opacity"></i>   
+    <i class="fa fa-linkedin w3-hover-opacity"></i>   
+  </footer>
+  </body>
+</html>
