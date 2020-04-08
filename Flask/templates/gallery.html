@@ -1,0 +1,197 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <meta charset="utf-8">
+ <style>
+ .header {
+  text-align: center;
+  padding: 32px;
+}
+
+ body
+ {
+	margin: 0;
+	padding: 0;
+	background-image: url({{ url_for('static', filename='images/emp2.jpg') }});
+	font-family: san-serif;
+ }
+ 
+ .container
+ {
+	width: 1000px;
+	min-height: 500px;
+	background: #fff;
+	margin:  0;
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	
+	float:left;
+	margin-right:10px;
+	
+ }
+ 
+ .container .box
+ {
+	position:relative;
+	width: 310px;
+	height: 300px;
+	background: #ff0;
+	margin:10px;
+	box-sizing:border-box;
+	display:inline-block;
+ }
+ 
+ .container .box .imgBox{
+ position:relative;
+  overflow:hidden;
+
+ }
+ 
+ .container .box: .imgBox img{
+ max-width:100%;
+ transform:transform .2s;
+
+ }
+ .container .box:hover .imgBox img{
+ transform:scale(1.2);
+ 
+ }
+ 
+ .container .box .details{
+	 position :absolute;
+	 top:10px;
+	 left:10px;
+	 bottom:10px;
+	 right:10px;
+	 background:rgba(0,0,0,.8);
+	 transform:scaleY(0);
+	 transition:transform .5s;
+ }
+ 
+ .container .box:hover .details{
+	 transform:scaleY(1);
+ }
+ 
+ .container .box .details .content{
+	 position :absolute;
+	 top:50%;
+	 transform:translateY(-50%);
+	 text-align:center;
+	 padding:15px;
+	 color:#fff;
+ 
+ }
+ 
+ .container .box .details .content p{
+  margin:10px 0 0;
+  padding:0;
+  font-size:40px;
+ }
+ 
+ 
+.extra{
+	float:left;
+	color:black;
+	
+} 
+
+
+
+ </style>
+ </head>
+ <body>
+ <h1 class ="header">COMPANY GALLERY 2020</h1>
+
+	 <div class="container">
+	 
+		<div class="box">
+		<div class ="imgBox">
+			<img src="{{ url_for('static', filename='images/pic1.jpg') }}" width="310px" height="300px"></div>
+			<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img  src="{{ url_for('static', filename='images/pic2.png') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+			
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic3.jpg') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>OFFICE<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic4.png') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic5.jpg') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT MEMBERS<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic6.jpeg') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic6.jpeg') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic2.png') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
+			</div>
+		
+		<div class="box">
+		<div class ="imgBox">
+		<img src="{{ url_for('static', filename='images/pic3.jpg') }}" width="310px" height="300px"></div>
+		<div class="details"><div class="content"><p>OFFICE<p></div></div>
+			</div>
+	
+		
+		
+		
+	 </div>
+	 <p class="extra"> A good is an asset to any organization as the key to <br>the organization’s 
+	success is the effectiveness of the <br>employees working in it.<br><br><br>
+	
+	Efficient employees have a positive attitude and an<br> open mind.<br>
+	 They are emotionally stable and have a consistent <br>and efficient working 
+	 and leadership style.<br><br><br>
+	 
+	 They outperform the negative employees in <br>productivity, energy levels, and 
+	health care costs.<br> Their approach is quite receptive and they are more <br>successful
+	 and effective in handling clients than <br>their negative counterparts.<br><br><br>
+ 
+	Satisfied employees are receptive to feedback<br> about their work as they constantly 
+	look to <br>improve their skills and efficiency.<br> They take healthy criticism in a positive 
+	way <br>and look at it as an opportunity for<br> self-improvement.<br><br><br>
+	
+	They actively participate in their career<br> development programs and also keep up on <br>the
+	 current industry trends. <br>Their efficient work pays off and helps<br> them climb the
+	 organizational ladder.<br> They are concerned about the company’s<br> performance and 
+	 also offer ideas to<br> improve the same..<br><br><br>
+
+	A good employee is an asset to any <br>organization as the key to the<br> organization’s 
+	success is the <br>effectiveness of the employees working in it. <br><br><br>
+
+	The employee performance will speak <br>for itself. Not only is there a good <br>performance
+	 with little supervision<br> but also willing to take up additional<br> responsibilities. 
+	 Such employees do <br>not require supervision and direction <br>to complete tasks. <br><br><br>
+
+<br><br><br><br><br><br>
+	</p>
+	 
+ </body>
+ </html>
