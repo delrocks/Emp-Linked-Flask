@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Emp-Linked Home Page</title>
+<title>Notices</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -8,8 +8,71 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
 
+<head>
+<style>
 
-<body class="w3-black">
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.heading{
+padding: 40px;
+font-size: 45px;
+}
+
+
+ p.one{
+padding:15px;
+font-size: 19px;
+border-style: ridge;
+border-color: #7FFF00;
+}
+ p.two{
+padding:15px;
+font-size: 18px;
+border-style: ridge;
+border-color: #7FFF00;
+}
+
+pic1
+{
+	align:left;
+	position :relative;
+	
+}
+
+.class1{
+font-size:20;
+
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid blue;
+  padding: 10px;
+}
+
+</style>
+</head>
+
+
+<body class="w3-black" style="font-family:Montserrat">
 <div class="animation-wrapper">
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
@@ -74,64 +137,46 @@
   </a>
 </div>
 {% endif %}
-<div class="particle particle-2"></div>
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="/" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="/register" class="w3-bar-item w3-button" style="width:25% !important">REGISTER</a>
-    <a href="/login" class="w3-bar-item w3-button" style="width:25% !important">LOGIN</a>
-    <a href="/gallery" class="w3-bar-item w3-button" style="width:25% !important">GALLERY</a>
-    <a href="/contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-  </div>
+
+	<ul style="margin-left:130px">
+	  
+	  <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/notices"><i class="fa fa-trello w3-xxlarge"></i><p>Announcements</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/holiday"><i class="fa fa-plane w3-xxlarge"></i><p>Holidays</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/birthday"><i class="fa fa-birthday-cake w3-xxlarge"></i><p>Birthdays</p></a></li>
+	  
+	</ul>
+
+  <div class="particle particle-3"></div>
+
+<br> 
+<br>
+<br>
+<div id="div3" class="center" style="background-color:#add8e6">
+ {% block content %}
+ <marquee scrolldelay="100">
+   {% for employee in employee_login %}
+   <strong style="color:#000000"> {{employee.fname}} {{employee.lname}} </strong>
+   <strong style="color:#000000"> has joined Emp-Linked as a </strong><strong style="font-style: italic;color:#000000"> {{employee.jobrole}}.</strong>
+  {% endfor %}
+ </marquee>
+  {% endblock %}
 </div>
+<br>
+<div id="div1" class="center" style="background-color:#add8e6"><marquee direction="left" scrolldelay="120"><strong style="color:#000000">Big Husky projects are due tomorrow!</strong></marquee></div> <br>
+<div id="div2" class="center" style="background-color:#add8e6"><marquee scrolldelay="130"><strong style="color:#000000">Everyone, please be ready with your work in 
+the meeting room at 10 o'clock.</strong></marquee></div> <br>
+<div id="div3" class="center" style="background-color:#add8e6"><strong style="color:#000000">Submit by 9/09/20:</strong><br>
+ <p style="color:#000000">- Project Reports</p><p style="color:#000000"> - Presentations</p></div>
+ <br>
 
-<div class="w3-padding-large" id="main">
-  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">Emp -</span> Linked.</h1>
-    <p>Employee Management System</p>
-  </header>
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-light-grey">Welcome,</h2>
-    {% if username %}
-        <p class="username"><strong>You are logged in as</strong> {{ username }}</p>
-      {% else %}
-      	<p>You are not logged in <br><a href = '/login'><b>Click here to log in</b></a></p>
-      {% endif %}
-
-    <hr style="width:200px" class="w3-opacity">
-    <div class="particle particle-3"></div>
-{% block content %}
-{% if show %}
-
-  <h2 class="w3-text-light-grey"></h2>
-   {% for status in status_request %}
-   <strong>Name :</strong> {{status.fname}} <br><strong>Department :</strong> {{status.dept}} <strong>Job Role :</strong> {{status.pos}} <br><strong>Leave Date :</strong> {{status.leavedate}} <br>
-   <strong>Reason : </strong> {{status.reason}} <br><strong>Status : </strong> {{status.status}} <br>
-  <br>
-
-{% endfor %}
-{% endif %}
-{% if passwordchange %}
-
-<form class="w3-black" action="" method="post">
-      <h2 class="w3-text-light-grey">Change Password :</h2>
-      <label><b>Enter your new password : </b></label>&emsp;
-      <input type="password" id="pw" name="pw" value="{{request.form.pw}}"><br><br>
-      <button type="submit" value="changepassword">Change Password</button>
-    {% if error %}
-        <p class="error"><strong>Status:</strong> {{ error }} </p>
-    {% endif %}
-{% endif %}
-{% endblock %}
-
+<p style="font-size:25px;text-align:center;border-bottom:1px solid black;
+border-top:1px solid black; padding:7px;">Quote of the day : <br>"Goodness and hard work are rewarded 
+with respect."</p>
 <div class="particle particle-4"></div>
 </div>
-
-    </div>
-    <br>
-  
-
-</div>
-
 </body>
-</html>
+</html> 

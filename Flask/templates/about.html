@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
-<title>Emp-Linked Home Page</title>
+<title>About Emp-Linked</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+<head>
+<style>
+.div1 img{
+width:1340px;
+height:300px;
+}
+.div2 h1{
+border-bottom:1px solid black;
+}
+.div2{
+position:absolute;
+margin:0 240px;
+}
 
+#para1{
+font-size:21px;
+color:seagreen;
+}
+#para2{
+line-height:22px;
+font-size:17px;
+}
+.center{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:50%;
+}
 
-<body class="w3-black">
+</style>
+</head>
+<body class="w3-black" style="font-family:Montserrat">
 <div class="animation-wrapper">
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
@@ -83,55 +112,29 @@
     <a href="/gallery" class="w3-bar-item w3-button" style="width:25% !important">GALLERY</a>
     <a href="/contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
   </div>
-</div>
-
-<div class="w3-padding-large" id="main">
-  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">Emp -</span> Linked.</h1>
-    <p>Employee Management System</p>
-  </header>
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-light-grey">Welcome,</h2>
-    {% if username %}
-        <p class="username"><strong>You are logged in as</strong> {{ username }}</p>
-      {% else %}
-      	<p>You are not logged in <br><a href = '/login'><b>Click here to log in</b></a></p>
-      {% endif %}
-
-    <hr style="width:200px" class="w3-opacity">
-    <div class="particle particle-3"></div>
-{% block content %}
-{% if show %}
-
-  <h2 class="w3-text-light-grey"></h2>
-   {% for status in status_request %}
-   <strong>Name :</strong> {{status.fname}} <br><strong>Department :</strong> {{status.dept}} <strong>Job Role :</strong> {{status.pos}} <br><strong>Leave Date :</strong> {{status.leavedate}} <br>
-   <strong>Reason : </strong> {{status.reason}} <br><strong>Status : </strong> {{status.status}} <br>
-  <br>
-
-{% endfor %}
-{% endif %}
-{% if passwordchange %}
-
-<form class="w3-black" action="" method="post">
-      <h2 class="w3-text-light-grey">Change Password :</h2>
-      <label><b>Enter your new password : </b></label>&emsp;
-      <input type="password" id="pw" name="pw" value="{{request.form.pw}}"><br><br>
-      <button type="submit" value="changepassword">Change Password</button>
-    {% if error %}
-        <p class="error"><strong>Status:</strong> {{ error }} </p>
-    {% endif %}
-{% endif %}
-{% endblock %}
-
+</div><div class="div1"><img src="{{url_for('static',filename='images/about2.jpg')}}" class="center" style="width:75%"></div>
+<div class="particle particle-3"></div>
+<div class="div2" ><h1>About us</h1>
+<p id="para1" >WELCOME TO EMP-LINKED</p>
+<p id="para2" style="width:80%">Welcome to the official website of EMP-LINKED Company. EMP-LINKED is a 
+dynamic IT products development company based in Panaji, Goa.</p>
+<p id="para2" style="width:80%"> The company 
+was established as a startup in 2005 and since then it has been providing 
+offshore software development and related services to the parent
+ company and its associates.
+The company has developed a number of high profile products in the finance 
+and education domains that are currently being used 
+in Europe and other continents. </p>
+<p id="para2" style="width:80%"> We believe that the judicious use of technology, together with a good
+ design can reduce complexity, connect individuals, and provide valuable
+ insights, all of which ultimately help businesses succeed.</p>
+ <br>
+ <br>
+ 
+</div >
 <div class="particle particle-4"></div>
-</div>
 
-    </div>
-    <br>
-  
-
-</div>
-
+ <br>
+ <br>
 </body>
 </html>

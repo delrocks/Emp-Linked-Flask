@@ -8,22 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../static/main.css">
-     <style>
-      body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-          .w3-sidebar {width: 120px;background: #222;}
-          footer {
+    <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+    <style>
+    	footer {
            display: table;
     text-align: center; 
 }	
           i {
           	padding-right: 10px;
           }
-        </style>
+      </style>
+
+    
+     
   </head>
-  <body class="w3-black">
+ <body class="w3-black">
+<div class="animation-wrapper">
      <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
-  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
@@ -44,20 +47,23 @@
     <p>CONTACT</p>
   </a>
 </nav>
+<div class="particle particle-1"></div>
       <form class="w3-black" style="border: 11px groove rgba(28,110,164,0.52);
 border-radius: 40px;" action="" method="post">
         <h1>Login</h1>
         <br>
         <fieldset>
-          <label for="fname">First Name:</label>
+          <label for="fname">Username:</label>
           <input type="text" id="fname" placeholder="Username" name="username" value="{{
           request.form.username }}">
+          <div class="particle particle-2"></div>
           <label for="pw">Password:</label>
           <input type="password" id="pw" placeholder="Password" name="password" value="{{
           request.form.password }}">
           {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}</p>
       {% endif %}
+      <div class="particle particle-3"></div>
         </fieldset>
         <button type="submit" value="Login">Login</button>
       </form>
@@ -69,5 +75,6 @@ border-radius: 40px;" action="" method="post">
     <i class="fa fa-twitter w3-hover-opacity"></i>   
     <i class="fa fa-linkedin w3-hover-opacity"></i>   
   </footer>
+  <div class="particle particle-4"></div>
   </body>
 </html>

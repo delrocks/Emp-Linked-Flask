@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<title>Company Holidays</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+	<head>
+		<style>
+		ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #333;
+		}
+
+		li {
+		  float: left;
+		}
+
+		li a {
+		  display: block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+
+		
+		table
+		{
+		display: table;
+		
+			display: table;
+			margin-left:auto;
+			margin-right:auto;
+			background-color:white;
+			
+		}
+		td{
+		text-align: center;
+		}
+		
+		.Table
+		{
+		width:60%;
+			display: table;
+			margin-left:auto;
+			margin-right:auto;
+			background-color:white;
+		}
+		.Heading
+		{
+			display: table-row;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.Row
+		{
+			display: table-row;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		
+		.Cell
+		{
+			display: table-cell;
+			border: solid;
+			border-width: thin;
+			padding-left: 5px;
+			padding-right: 5px;
+			text-align: center;
+		}
+		
+		.title{
+		text-align: center;
+		display: table-row;
+		border-color:black;
+		font-weight: bold;
+			
+		vertical-align:middle;
+		}-->
+		 
+		 .head{
+		padding:5px;
+		border-top:2px solid black;
+		 border-bottom:2px solid black;
+		font-size:22px;
+		text-decoration:underline;
+		 }
+		 .cell{
+		 font-size:19px;
+		 }
+		</style>
+	</head>
+<body class="w3-black" style="font-family:Montserrat">
+<div class="animation-wrapper">
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>REGISTER</p>
+  </a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>LOGIN</p>
+  </a>
+  <a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-camera w3-xxlarge"></i>
+    <p>GALLERY</p>
+  </a>
+  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+  {% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
+</nav>
+<div class="particle particle-1"></div>
+{% if username %}
+<div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
+  <h5 class="w3-bar-item">Menu</h5>
+  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Request Leave</p>
+  </a>
+  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file-text-o w3-xxlarge"></i>
+    <p>View Leave Status</p>
+  </a>
+   <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file w3-xxlarge"></i>
+    <p>Sticky Notes tool BETA</p>
+  </a>
+<a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-trello w3-xxlarge"></i>
+    <p>Notices</p>
+  </a>
+  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-handshake-o w3-xxlarge"></i>
+    <p>Company Policies</p>
+  </a>
+  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>About Us</p>
+  </a>
+   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-lock w3-xxlarge"></i>
+    <p>Change password</p>
+  </a>
+</div>
+{% endif %}
+<div class="particle particle-2"></div>
+
+	<ul style="margin-left:130px">
+		<li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/notices"><i class="fa fa-trello w3-xxlarge"></i><p>Announcements</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/holiday"><i class="fa fa-plane w3-xxlarge"></i><p>Holidays</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/birthday"><i class="fa fa-birthday-cake w3-xxlarge"></i><p>Birthdays</p></a></li>
+
+	</ul>
+
+
+
+<table style="margin-left:auto;margin-right:auto" >
+	<div class="particle particle-3"></div>
+    <tr  >
+		<th colspan="3" height="100"><img src="{{url_for('static',filename='images/cal3.png')}}" width="900px" height="201px"></th>
+	</tr>
+	<tr >
+		<th  class ="head"height="50" style="background-color: #d3d3d3">Day</th>
+		<th class ="head"height="50" style="background-color: #d3d3d3">Date</th>
+		<th class ="head"height="50"style="background-color: #d3d3d3">Holiday Name</th>
+	</tr>
+	<tr>
+		<td class="cell"height="40" style="background-color: #75a783">Sunday</td>
+		<td class="cell"height="40"style="background-color: #75a783">26 January 2020</td>
+		<td class="cell"height="40"style="background-color: #75a783">Republic Day</td>
+		
+	</tr>
+	<tr>
+		<td class="cell"height="40"style="background-color: #87b864">Tuesday</td>
+		<td class="cell"height="40"style="background-color: #87b864">10 March 2020</td>
+		<td class="cell" height="40"style="background-color: #87b864">Holi</td>
+	</tr>
+	<tr>
+		<td class="cell"height="40"style="background-color: #bcc37a">Monday</td>
+		<td class="cell"height="40"style="background-color: #bcc37a">6th April 2020</td>
+		<td class="cell"height="40"style="background-color: #bcc37a">Mahavir Jayanti</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #d7b546">Friday</td>
+		<td class="cell"height="30"style="background-color: #d7b546">10 April 2020</td>
+		<td class="cell"height="30"style="background-color: #d7b546">Good Friday</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30" style="background-color: #e2d86f">Tuesday</td>
+		<td class="cell"height="30"style="background-color: #e2d86f">07 May 2020</td>
+		<td class="cell"height="30"style="background-color: #e2d86f">Buddha Purnima</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #FFB6C1">Monday</td>
+		<td class="cell"height="30"style="background-color: #FFB6C1">25 May 2020</td>
+		<td class="cell"height="30"style="background-color: #FFB6C1">Id-ul-Fitr</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #c285a3">Friday</td>
+		<td class="cell"height="30"style="background-color: #c285a3">10 April 2020</td>
+		<td class="cell"height="30"style="background-color: #c285a3">Good Friday</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #BB8FCE">Wednesday</td>
+		<td class="cell"height="30"style="background-color: #BB8FCE">12 August 2020</td>
+		<td class="cell"height="30" style="background-color: #BB8FCE">Janmashtami</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #D8BFD8">Sunday</td>
+		<td class="cell"height="30"style="background-color: #D8BFD8">15 August 2020</td>
+		<td class="cell"height="30" style="background-color: #D8BFD8">Independence Day</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #add8ef">Saturday</td>
+		<td class="cell"height="30"style="background-color: #add8ef">02 October 2020</td>
+		<td class="cell"height="30"style="background-color: #add8ef">Gandhi Jayanti</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #b0c4de">Sunday</td>
+		<td class="cell"height="30"style="background-color: #b0c4de">25 October 2020</td>
+		<td class="cell"height="30"style="background-color: #b0c4de">Dussehra</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #84A9DB">Sunday</td>
+		<td class="cell"height="30"style="background-color: #84A9DB">14 November 2020</td>
+		<td class="cell"height="30"style="background-color: #84A9DB">Diwali</td>
+	</tr>
+	<tr>
+		<td class="cell"height="30"style="background-color: #4372AA">Friday</td>
+		<td class="cell"height="30"style="background-color: #4372AA">25 December 2020</td>
+		<td class="cell"height="30"style="background-color: #4372AA">Christmas</td>
+	</tr>
+</table>
+<div class="particle particle-4"></div>
+</body>
+</html>

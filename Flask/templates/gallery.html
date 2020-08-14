@@ -1,7 +1,14 @@
  <!DOCTYPE html>
  <html>
+ <title>Company Gallery 2020</title>
  <head>
  <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+
  <style>
  .header {
   text-align: center;
@@ -12,7 +19,6 @@
  {
 	margin: 0;
 	padding: 0;
-	background-image: url({{ url_for('static', filename='images/emp2.jpg') }});
 	font-family: san-serif;
  }
  
@@ -20,7 +26,7 @@
  {
 	width: 1000px;
 	min-height: 500px;
-	background: #fff;
+	background: #000000;
 	margin:  0;
 	display:flex;
 	flex-direction:row;
@@ -99,11 +105,93 @@
 
 
  </style>
+ <style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+.w3-sidebar {width: 120px;background: #222;}
+</style>
  </head>
- <body>
- <h1 class ="header">COMPANY GALLERY 2020</h1>
 
-	 <div class="container">
+ <body class="w3-black" style="font-family:Montserrat">
+ 	<div class="animation-wrapper">
+ 	<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>REGISTER</p>
+  </a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>LOGIN</p>
+  </a>
+  <a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-camera w3-xxlarge"></i>
+    <p>GALLERY</p>
+  </a>
+  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+  {% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
+</nav>
+
+{% if username %}
+<div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
+  <h5 class="w3-bar-item">Menu</h5>
+  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Request Leave</p>
+  </a>
+  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file-text-o w3-xxlarge"></i>
+    <p>View Leave Status</p>
+  </a>
+  <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file w3-xxlarge"></i>
+    <p>Sticky Notes tool BETA</p>
+  </a>
+  <a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-trello w3-xxlarge"></i>
+    <p>Notices</p>
+  </a>
+  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-handshake-o w3-xxlarge"></i>
+    <p>Company Policies</p>
+  </a>
+  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>About Us</p>
+  </a>
+   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-lock w3-xxlarge"></i>
+    <p>Change password</p>
+  </a>
+</div>
+{% endif %}
+<div class="particle particle-1"></div>
+
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="/" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="/register" class="w3-bar-item w3-button" style="width:25% !important">REGISTER</a>
+    <a href="/login" class="w3-bar-item w3-button" style="width:25% !important">LOGIN</a>
+    <a href="/gallery" class="w3-bar-item w3-button" style="width:25% !important">GALLERY</a>
+    <a href="/contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+<div class="particle particle-2"></div>
+ <h1 class="w3-jumbo" style="text-align:center"><span class="w3-hide-small">Company</span> Gallery 2020</h1>
+
+	 <div class="container" style="margin-left:120px">
 	 
 		<div class="box">
 		<div class ="imgBox">
@@ -128,7 +216,7 @@
 		<img src="{{ url_for('static', filename='images/pic4.png') }}" width="310px" height="300px"></div>
 		<div class="details"><div class="content"><p>PROJECT DISCUSSION<p></div></div>
 			</div>
-		
+		<div class="particle particle-3"></div>
 		<div class="box">
 		<div class ="imgBox">
 		<img src="{{ url_for('static', filename='images/pic5.jpg') }}" width="310px" height="300px"></div>
@@ -163,7 +251,7 @@
 		
 		
 	 </div>
-	 <p class="extra"> A good is an asset to any organization as the key to <br>the organization’s 
+	 <p class="extra" style="color:white"> A good employee is an asset to any organization as the key to <br>the organization’s 
 	success is the effectiveness of the <br>employees working in it.<br><br><br>
 	
 	Efficient employees have a positive attitude and an<br> open mind.<br>
@@ -189,7 +277,7 @@
 	The employee performance will speak <br>for itself. Not only is there a good <br>performance
 	 with little supervision<br> but also willing to take up additional<br> responsibilities. 
 	 Such employees do <br>not require supervision and direction <br>to complete tasks. <br><br><br>
-
+<div class="particle particle-4"></div>
 <br><br><br><br><br><br>
 	</p>
 	 

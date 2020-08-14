@@ -6,21 +6,14 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <style>
-    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-    .w3-row-padding img {margin-bottom: 12px}
-    .w3-sidebar {width: 120px;background: #222;}
-          i {
-            padding-right: 5px;
-          }
-    </style>
-  </head>
-    <body class="w3-black">
+    <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
 
+  </head>
+    <body class="w3-black" style="font-family:Montserrat">
+    <div class="animation-wrapper">
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
       <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
-      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-black">
+      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
         <i class="fa fa-home w3-xxlarge"></i>
         <p>HOME</p>
       </a>
@@ -40,9 +33,49 @@
         <i class="fa fa-envelope w3-xxlarge"></i>
         <p>CONTACT</p>
       </a>
+       {% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
     </nav>
+    {% if username %}
+<div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
+  <h5 class="w3-bar-item">Menu</h5>
+  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Request Leave</p>
+  </a>
+  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file-text-o w3-xxlarge"></i>
+    <p>View Leave Status</p>
+  </a>
+  <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file w3-xxlarge"></i>
+    <p>Sticky Notes tool BETA</p>
+  </a>
+  <a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-trello w3-xxlarge"></i>
+    <p>Notices</p>
+  </a>
+  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-handshake-o w3-xxlarge"></i>
+    <p>Company Policies</p>
+  </a>
+  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>About Us</p>
+  </a>
+   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-lock w3-xxlarge"></i>
+    <p>Change password</p>
+  </a>
+</div>
+{% endif %}
+    <div class="particle particle-1"></div>
   <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
-      <h2 class="w3-text-light-grey">Contact Me</h2>
+      <h2 class="w3-text-light-grey">Contact Us</h2>
       <hr style="width:200px" class="w3-opacity">
 
     <div class="w3-section">
@@ -51,17 +84,21 @@
       <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: dxdelrocks@gmail.com</p>
     </div><br>
 
-    <p>Feedback:</p>
-
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
+    <p><b>Feedback:</b></p>
+    <div class="particle particle-2"></div>
+    <form method="POST">
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" name="name" value="{{request.form.name}}"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" name="email" value="{{request.form.email}}"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" name="subject" value="{{request.form.subject}}"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" name="message" value="{{request.form.message}}"></p>
       <p>
         <button class="w3-button w3-light-grey w3-padding-large" type="submit">
           <i class="fa fa-paper-plane"></i> SEND MESSAGE
         </button>
+        {% if error %}
+        <p class="error"><b>{{ error }}</b></p>
+        {% endif %}
+        <div class="particle particle-3"></div>
       </p>
     </form>
   </div>
@@ -74,5 +111,6 @@
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </footer>
+  <div class="particle particle-4"></div>
   </body>
 </html>

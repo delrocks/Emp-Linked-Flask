@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<title>Employee Birthdays</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+	<head>
+		<style>
+		ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #333;
+		}
+
+		li {
+		  float: left;
+		}
+
+		li a {
+		  display: block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+
+		
+		table
+		{
+		
+	
+			display: table;
+			margin-left:auto;
+			margin-right:auto;
+			
+			
+		}
+		td{
+		text-align: center;
+		}
+		.title{
+ 		padding:5px;
+		border-bottom:1px solid black;
+		}
+		.titlee{
+			background-color:#BA97B7;
+			font-family:Montserrat;
+			font-size:25px;
+		}
+		.title1_1,.title1_2,.title1_3{
+		
+		padding:5px;
+		background-color:#D7B2D6;
+		
+		}
+		
+		.title2_1,.title2_2,.title2_3{
+		padding:5px;
+		background-color:#EAC0E8;
+		}
+		.title3_1,.title3_2,.title3_3{
+		padding:5px;
+		background-color:#EFC2ED;
+		}
+		.title4_1,.title4_2,.title4_3{
+		padding:5px;
+		background-color:#FFC5FD;
+		}
+		.J,.F,.M,.A,.Ma,.Ju,.Jul,.Au,.S,.O,.N,.D{
+		border-bottom:2px solid black;
+		font-size:20px;
+		}
+		
+		.titlee                    
+		{
+		border-style:solid;
+		border-width:15px;
+		border-color:rgba(0,0,0,0.1);
+		border-image-source:url({{url_for('static',filename='images/row11.jpg')}});
+		border-image-slice:15;
+		}
+		.title1_1, .title1_2, .title1_3,          
+		.title2_1,.title2_2,.title2_3,
+		.title3_1,.title3_2,.title3_3
+		{
+		border-style:solid;
+		border-width:15px;
+		border-color:rgba(0,0,0,0.1);
+		border-image-source:url({{url_for('static',filename='images/row5.jpg')}});
+		border-image-slice:15;
+		}
+		.title4_1,.title4_2,.title4_3             
+		{          
+		border-style:solid;
+		border-width:15px;
+		border-color:rgba(0,0,0,0.1);
+		border-image-source:url({{url_for('static',filename='images/row8.jpg')}});
+		border-image-slice:15;
+		}
+		</style>
+	</head>
+<body class="w3-black" style="font-family:Montserrat">
+  <div class="animation-wrapper">
+  	<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>REGISTER</p>
+  </a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>LOGIN</p>
+  </a>
+  <a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-camera w3-xxlarge"></i>
+    <p>GALLERY</p>
+  </a>
+  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+  {% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
+</nav>
+<div class="particle particle-1"></div>
+{% if username %}
+<div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
+  <h5 class="w3-bar-item">Menu</h5>
+  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Request Leave</p>
+  </a>
+  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file-text-o w3-xxlarge"></i>
+    <p>View Leave Status</p>
+  </a>
+   <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file w3-xxlarge"></i>
+    <p>Sticky Notes tool BETA</p>
+  </a>
+  <a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-trello w3-xxlarge"></i>
+    <p>Notices</p>
+  </a>
+  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-handshake-o w3-xxlarge"></i>
+    <p>Company Policies</p>
+  </a>
+  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>About Us</p>
+  </a>
+   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-lock w3-xxlarge"></i>
+    <p>Change password</p>
+  </a>
+</div>
+{% endif %}
+
+	<ul style="margin-left:130px">
+		<li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/notices"><i class="fa fa-trello w3-xxlarge"></i><p>Announcements</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/holiday"><i class="fa fa-plane w3-xxlarge"></i><p>Holidays</p></a></li>
+    
+
+    <li><a class="w3-bar-item w3-button w3-padding-large w3-black" href="/birthday"><i class="fa fa-birthday-cake w3-xxlarge"></i><p>Birthdays</p></a></li>
+		
+	</ul>
+	<br>
+	<div class="particle particle-1"></div>
+	<table  width="70%" cellspacing="24"; >
+    <tr  >
+		<th colspan="3" height="50" class="titlee" cellspacing="7" >Birthday List Of Employees</th>
+	</tr>
+	<!-- 1st Row-->
+	<tr> 											
+		<td class="title1_1"height="60"  >              <!-- 1st Row 1st cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3" class="J">January</th></tr>
+				<tr >
+				<td  style="font-size:18px">09</td>
+				<td style="font-size:18px">Errol</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">11</td>
+				<td style="font-size:18px">Deon</td>
+				<td style="font-size:18px">( Finance Dept )</td>
+				</tr>
+			</table>
+		</td>
+		<div class="particle particle-2"></div>
+		<td class="title1_2"height="60">                <!-- 1st Row 2nd cell-->
+			<table cellspacing="10">
+				<tr><th colspan="3" class="F">February</th></tr>
+				<tr>
+				<td style="font-size:18px">01</td>
+				<td style="font-size:18px">Alison</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">04</td>
+				<td style="font-size:18px">Erica</td>
+				<td style="font-size:18px">(Comminucation Dept)</td>
+				</tr>
+			</table>
+		</td>
+		
+		<td class="title1_3"height="60">                  <!-- 1st Row 3rd cell-->
+			<table cellspacing="10" >
+				<tr><th colspan="3" class="M">March</th></tr>
+				<tr>
+				<td style="font-size:18px">03</td>
+				<td style="font-size:18px">Avina</td>
+				<td style="font-size:18px">( Finance Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">05</td>
+				<td style="font-size:18px">Kiara</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+			</table>
+		</td>
+		
+	</tr>
+	<div class="particle particle-3"></div>
+	<!-- 2st Row-->
+	
+	<tr>
+		<td height="60"class="title2_1" >                   <!-- 2nd Row 1st cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3" class="A">April</th></tr>
+				<tr>
+				<td style="font-size:18px">01</td>
+				<td style="font-size:18px">Richard</td>
+				<td style="font-size:18px">(Accounts Dept)</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">10</td>
+				<td style="font-size:18px">Tina</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+			</table>
+		</td>
+		
+		<td height="60"class="title2_2">                           <!-- 2nd Row 2nd cell-->
+			<table cellspacing="10" >
+				<tr><th colspan="3" class="Ma">May</th></tr>
+				<tr>
+				<td style="font-size:18px">02</td>
+				<td style="font-size:18px">Fiona</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">15</td>
+				<td style="font-size:18px">Rose</td>
+				<td style="font-size:18px">(Marketing Dept)</td>
+				</tr>
+			</table>
+		</td>
+		<td height="60"class="title2_3">                              <!-- 2nd Row 3rd cell-->
+			<table cellspacing="10" >
+				<tr><th colspan="3"class="Ju">June</th></tr>
+				<tr>
+				<td style="font-size:18px">05</td>
+				<td style="font-size:18px">Dima</td>
+				<td style="font-size:18px">( Finance Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">12</td>
+				<td style="font-size:18px">Rose</td>
+				<td style="font-size:18px">(Communication Dept)</td>
+				</tr>
+			</table>
+		</td>	
+	</tr>
+	
+	<!-- 3st Row-->
+	
+	<tr>
+		<td height="60"class="title3_1" >                      <!-- 3rd Row 1st cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3"class="Jul">July</th></tr>
+				<tr>
+				<td style="font-size:18px">02</td>
+				<td style="font-size:18px">Tim</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">17</td>
+				<td style="font-size:18px">Deanne</td>
+				<td style="font-size:18px">(Communication Dept)</td>
+				</tr>
+			</table>
+		</td>
+		<td height="60" class="title3_2">                       <!-- 3rd Row 2nd cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3" class="Au">August</th></tr>
+				<tr>
+				<td style="font-size:18px">04</td>
+				<td style="font-size:18px">Kevin</td>
+				<td style="font-size:18px">(Marketing Dept)</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">14</td>
+				<td style="font-size:18px">Daisy</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+			</table>
+		</td>
+		<td height="60"class="title3_3">                           <!-- 3rd Row 3rd cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3"class="S">September</th></tr>
+				<tr>
+				<td style="font-size:18px">02</td>
+				<td style="font-size:18px">Fritzi</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">16</td>
+				<td style="font-size:18px">Dorry</td>
+				<td style="font-size:18px">( Finance Dept )</td>
+				</tr>
+			</table>
+		</td>
+		
+	</tr>
+	
+	<!-- 4th Row-->
+	<div class="particle particle-4"></div>
+	<tr>
+		<td height="60"class="title4_1" >                        <!-- 4th Row 1st cell-->
+			<table  cellspacing="10">
+				<tr><th colspan="3"class="O">October</th></tr>
+				<tr>
+				<td style="font-size:18px">07</td>
+				<td style="font-size:18px">Rhea</td>
+				<td style="font-size:18px">( Finance Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">11</td>
+				<td style="font-size:18px">Dorry</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+			</table>
+		</td>
+		<td height="60"class="title4_2">                            <!-- 4th Row 2nd cell-->
+		<table cellspacing="10" >
+				<tr><th colspan="3"class="N">November</th></tr>
+				<tr>
+				<td style="font-size:18px">03</td>
+				<td style="font-size:18px">Shania</td>
+				<td style="font-size:18px">(Marketing Dept)</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">12</td>
+				<td style="font-size:18px">Ferrol</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+			</table>
+		 
+		</td>
+		<td height="60"class="title4_3">                             <!-- 4th Row 3rd cell-->
+		<table  cellspacing="10">
+				<tr><th colspan="3" class="D">December</th></tr>
+				<tr>
+				<td style="font-size:18px">04</td>
+				<td style="font-size:18px">Zack</td>
+				<td style="font-size:18px">( Sales Dept )</td>
+				</tr>
+				<tr>
+				<td style="font-size:18px">13</td>
+				<td style="font-size:18px">Vanessa</td>
+				<td style="font-size:18px">( Accounts Dept )</td>
+				</tr>
+			</table>
+		</td>
+		
+	</tr>
+</table>
+	
+</body>
+</html> 

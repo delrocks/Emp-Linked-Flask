@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html>
-<title>Emp-Linked Home Page</title>
+<title>Admin Page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+<style>
+  input:placeholder-shown {
+   font-style: italic;
+ }
+</style>
 
+<body class="w3-black" style="font-family:Montserrat">
+  <div class="animation-wrapper">
 
-<body class="w3-black">
-<div class="animation-wrapper">
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
-  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="/admin" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
-  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>REGISTER</p>
-  </a>
-  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-eye w3-xxlarge"></i>
-    <p>LOGIN</p>
-  </a>
-  <a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-camera w3-xxlarge"></i>
-    <p>GALLERY</p>
-  </a>
-  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-envelope w3-xxlarge"></i>
-    <p>CONTACT</p>
-  </a>
+  
   {% if username %}
   <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
@@ -44,33 +34,21 @@
 {% if username %}
 <div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
   <h5 class="w3-bar-item">Menu</h5>
-  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="/showemp" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>View Employees</p>
+  </a>
+  <a href="/viewleaves" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-envelope w3-xxlarge"></i>
-    <p>Request Leave</p>
+    <p>View Leave Requests</p>
   </a>
-  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="/viewfeedback" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-file-text-o w3-xxlarge"></i>
-    <p>View Leave Status</p>
+    <p>View Feedback</p>
   </a>
-   <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-file w3-xxlarge"></i>
     <p>Sticky Notes tool BETA</p>
-  </a>
-  <a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-trello w3-xxlarge"></i>
-    <p>Notices</p>
-  </a>
-  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-handshake-o w3-xxlarge"></i>
-    <p>Company Policies</p>
-  </a>
-  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-users w3-xxlarge"></i>
-    <p>About Us</p>
-  </a>
-   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-lock w3-xxlarge"></i>
-    <p>Change password</p>
   </a>
 </div>
 {% endif %}
@@ -101,31 +79,57 @@
     <hr style="width:200px" class="w3-opacity">
     <div class="particle particle-3"></div>
 {% block content %}
-{% if show %}
-
-  <h2 class="w3-text-light-grey"></h2>
-   {% for status in status_request %}
-   <strong>Name :</strong> {{status.fname}} <br><strong>Department :</strong> {{status.dept}} <strong>Job Role :</strong> {{status.pos}} <br><strong>Leave Date :</strong> {{status.leavedate}} <br>
-   <strong>Reason : </strong> {{status.reason}} <br><strong>Status : </strong> {{status.status}} <br>
+{% if showemployees %}
+  <h2 class="w3-text-light-grey">Employees :</h2>
+   {% for employee in employee_login %}
+   <strong>Name :</strong> {{employee.fname}} {{employee.lname}} <br>
+   <strong>Email :</strong> {{employee.email}} <br>
+   <strong>Date of Birth :</strong> {{employee.dob}} <br>
+   <strong>Bio :</strong> {{employee.bio}} <br>
+   <strong>Job Role :</strong> {{employee.jobrole}} <br>
   <br>
 
 {% endfor %}
 {% endif %}
-{% if passwordchange %}
+<div class="particle particle-3"></div>
+{% if show %}
 
+  <h2 class="w3-text-light-grey">Leave Requests :</h2>
+   {% for leave in leave_request %}
+   <strong>Name :</strong> {{leave.fname}} {{leave.lname}} <br><strong>Department :</strong> {{leave.dept}} <strong>Job Role :</strong> {{leave.pos}} <br>
+   <strong>Leave Date :</strong> {{leave.leavedate}} <strong>Reason :</strong> {{leave.reason}} <br>
+   <strong>Status :</strong> {{leave.status}} <br>
+
+  <br>
+
+{% endfor %}
 <form class="w3-black" action="" method="post">
-      <h2 class="w3-text-light-grey">Change Password :</h2>
-      <label><b>Enter your new password : </b></label>&emsp;
-      <input type="password" id="pw" name="pw" value="{{request.form.pw}}"><br><br>
-      <button type="submit" value="changepassword">Change Password</button>
+      <h2 class="w3-text-light-grey">Approve / Reject leaves:</h2>
+      <label><b>Enter Employee First Name : </b></label>&emsp;
+      <input type="text" id="fname" placeholder="case sensitive" name="fname" value="{{request.form.fname}}"><br><br>
+      <input type="radio" id="Approved" name="status" value="Approved">
+      <label for="approved"> Approved</label> </t>
+      <input type="radio" id="Rejected" name="status" value="Rejected">
+      <label for="rejected">Rejected</label><br><br>
+    <button type="submit" value="updateleavestatus">Update Leave Status</button>
     {% if error %}
         <p class="error"><strong>Status:</strong> {{ error }} </p>
     {% endif %}
 {% endif %}
-{% endblock %}
+{% if showfeedback %}
+<h2 class="w3-text-light-grey">Feedback :</h2>
+   {% for msg in feedback %}
+   <strong>Name : </strong> {{msg.name}} <br> <strong> Email : </strong>  {{msg.email}} <br>
+   <strong> Subject : </strong> {{msg.subject}} <br>
+   <strong> Message : </strong> <br> {{msg.message}} <br>
 
+  <br>
+
+{% endfor %}
+{% endif %}
+{% endblock %}
 <div class="particle particle-4"></div>
-</div>
+
 
     </div>
     <br>

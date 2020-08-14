@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>Leave Request Form</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../static/main.css">
+		<link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+
+		
+		
+	</head>
+	<body class="w3-black" style="font-family:Montserrat">
+	<div class="animation-wrapper">
+	<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+	<img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+	<a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-home w3-xxlarge"></i>
+		<p>HOME</p>
+	</a>
+	<a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-user w3-xxlarge"></i>
+		<p>REGISTER</p>
+	</a>
+	<a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-eye w3-xxlarge"></i>
+		<p>LOGIN</p>
+	</a>
+	<a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-camera w3-xxlarge"></i>
+		<p>GALLERY</p>
+	</a>
+	<a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-envelope w3-xxlarge"></i>
+		<p>CONTACT</p>
+	</a>
+	{% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
+</nav>
+<div class="particle particle-1"></div>
+			<form class="w3-black" style="border: 11px groove rgba(28,110,164,0.52);
+border-radius: 40px;" action="" method="post">
+				<h1>Leave Request Form</h1>
+				<br>
+						{% if error %}
+					        <p class="error"><strong> {{ error }} </strong></p>
+					    {% endif %}
+				<fieldset>
+						<label for="fname">First Name:</label>
+						<input type="text" id="fname" placeholder="First Name.." name="fname" value="{{
+									request.form.fname }}">
+						<label for="lname">Last Name:</label>
+						<input type="text" id="lname" placeholder="Last Name.." name="lname" value="{{
+									request.form.lname }}">
+									<div class="particle particle-2"></div>
+						<label for="dept">Department:</label>
+						<input type="text" id="dept" placeholder="Department.." name="dept" value="{{
+									request.form.dept }}">
+						<label for="pos">Position:</label>
+						<input type="text" id="pos" placeholder="Position.." name="pos" value="{{
+									request.form.pos }}">
+						<label for="number">Mobile No.:</label>
+						<div class="particle particle-3"></div>
+						<input type="number" id="phno" placeholder="Mobile no." name="phno" value="{{
+									request.form.phno }}">
+					
+						<label for="date">Leave Date:</label>
+						<input type="date" id="date" name="date" value="{{
+									request.form.date }}" >
+
+						<label for="reason">Reason for leave:</label>
+						<input type="text" id="reason" name="reason" value="{{
+									request.form.reason }}" >
+						
+				</fieldset>
+		<div class="particle particle-4"></div>
+		<button type="submit" value="leave">Request Leave</button>  
+	</form>
+
+</body>
+</html>

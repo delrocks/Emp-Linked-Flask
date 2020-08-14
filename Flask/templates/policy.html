@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<title>Company Policies</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}">
+	<head>
+	<style>
+	h1{
+	padding:10px;
+	}
+	.div1,.div2,.div3,.div4{
+	line-height:22px;
+	padding-left:20px;
+	font-size:17px;
+	 
+	}
+	.imag1, .imag2, .imag3, .imag4 {
+	position :absolute;
+	height:100px;
+	width:120px;
+	display:flex;
+	
+	}
+	
+	.div1 h3,.div1 p,.div2 h3,.div2 p,.div3 h3,.div3 p,.div4 h3,.div4 p{
+	margin:0 130px;
+	}
+	.div1 h3, .div2 h3, .div3 h3, .div4 h3{
+	padding-bottom:10px;
+	}
+
+	</style>
+	
+	</head>
+	
+	<body class="w3-black" style="font-family:Montserrat">
+<div class="animation-wrapper">
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" style="width:100%">
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>REGISTER</p>
+  </a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>LOGIN</p>
+  </a>
+  <a href="/gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-camera w3-xxlarge"></i>
+    <p>GALLERY</p>
+  </a>
+  <a href="/contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+  {% if username %}
+  <a href = '/logout' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-power-off w3-xxlarge" style="color:#FFFFFF"></i>
+    <p>LOGOUT</p>
+  </a>
+  {% endif %}
+</nav>
+<div class="particle particle-1"></div>
+{% if username %}
+<div class="w3-sidebar w3-bar-block" style="width:15%;right:0">
+  <h5 class="w3-bar-item">Menu</h5>
+  <a href="/leaverequest" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>Request Leave</p>
+  </a>
+  <a href="/leavestatus" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file-text-o w3-xxlarge"></i>
+    <p>View Leave Status</p>
+  </a>
+   <a href="{{url_for('static',filename='notes.html')}}" target="_blank" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-file w3-xxlarge"></i>
+    <p>Sticky Notes tool BETA</p>
+  </a>
+  <a href="/notices" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-trello w3-xxlarge"></i>
+    <p>Notices</p>
+  </a>
+  <a href="/policy" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-handshake-o w3-xxlarge"></i>
+    <p>Company Policies</p>
+  </a>
+  <a href="/about" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-users w3-xxlarge"></i>
+    <p>About Us</p>
+  </a>
+   <a href="/password" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-lock w3-xxlarge"></i>
+    <p>Change password</p>
+  </a>
+</div>
+{% endif %}
+
+	<h1 class="w3-center"><u>Company Policies</u></h1>
+	<div class="div1" style="margin-left:150px"><img class="imag1" src="{{url_for('static',filename='images/icon2.png')}}">
+	<h3 style="padding-left: 20px"> Workplace Health and Safety</h3>
+	<p style="padding-left: 20px">Provisions for occupational safety are a necessity for everyone
+	who owns or runs a business. It’s imperative that your employees work <br>
+	within a healthy and safe workplace. Accidents and unsafe conditions can
+	land you in court. If you also count the damage to reputation <br>and loss
+	of faith from employees, complacency when it comes to safety may be the
+	biggest mistake you’ll ever make.</p></div>
+	<br>
+	<br>
+	<br>
+	<div class="div2" style="margin-left:150px"><img class="imag2"src="{{url_for('static',filename='images/icon3.png')}}">
+	<h3 style="padding-left: 20px"> Equal Opportunity Policy</h3>
+	<p style="padding-left: 20px">Being an equal opportunity employer is mandated by law in most
+	countries. This equal opportunity policy prohibits any company 
+	from<br> discriminating against employees or job applicants on the 
+	basis of a “protected characteristic” (gender, age, race etc.).
+	It is fundamental<br> for non-discrimination, anti-harassment,
+	workplace violence and diversity policies.</p></div>
+	</body>
+	<br>
+	<br>
+	<br>
+	<div class="div3" style="margin-left:150px"><img class="imag3"src="{{url_for('static',filename='images/icon4.jpg')}}">
+	<h3 style="padding-left: 20px"> Leave of Absence Policy</h3>
+	<p style="padding-left: 20px">For various reasons ranging from health issues to vacation plans,
+	employees may occasionally require to be absent from work. Whether <br>it 
+	is mandated by law or not, it is always advantageous to let your 
+	employees know beforehand what benefits you offer. Different kinds<br>
+	of leave (sick leave, Paid Time Off, maternity leave, parental leave etc.)
+	are separate entities and may require different treatment.</p></div>
+	
+	<br>
+	<br>
+	<br>
+	<div class="div4" style="margin-left:150px"><img class="imag4"src="{{url_for('static',filename='images/pic1.jpg')}}">
+	<h3 style="padding-left: 20px"> Employee Disciplinary Action Policy</h3>
+	<p style="padding-left: 20px">Occasionally problems will arise at work and dealing with them
+	is much easier with a clear disciplinary policy in place. Employees must<br> 
+	know how and under what circumstances they will be disciplined.
+	A standardized step-by-step process will help you ensure fair and<br>
+	appropriate treatment, even if you don’t formally disclose
+	the entire procedure.</p></div>
+	
+	</body>
+	</body>
+</html>
