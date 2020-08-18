@@ -5,7 +5,6 @@ app = Flask(__name__)
 app.database = "empmgt.db"
 app.secret_key = "delrockz"
 
-
 @app.route('/')
 def home():
 	if 'username' in session:
